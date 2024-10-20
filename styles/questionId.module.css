@@ -23,6 +23,9 @@
 }
 
 .answerList {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr); 
+    gap: 1rem; 
     list-style: none;
     padding: 0;
     margin: 0;
@@ -45,6 +48,16 @@
 .answerLabel {
     margin-left: rem; 
 }
+.correct {
+    color: green;
+}
+
+.incorrect {
+  color: red;
+}
+.default{
+    color: black;
+}
 
 .homeButton {
     background-color: #007bff;
@@ -62,4 +75,57 @@
 
 .answerText {
   margin-left: 0.5rem; 
+}
+
+.nextQuestion{
+    background-color: #007bff;
+    color: white;
+    border: none;
+    padding: 0.5rem;
+    border-radius: 5px;
+    cursor: pointer;
+    width: 80px;
+    display: flex;
+}
+
+.nextButton{
+    background-color: #007bff;
+    color: white;
+    border: none;
+    padding: 0.75rem;
+    border-radius: 5px;
+    cursor: pointer;
+    align-items: right;
+}
+
+.divBtn{
+    gap: 1rem; 
+    display: grid;
+}
+
+.correctAnswer{
+    color: green;
+}
+
+.progressBarContainer {
+    width: 100%;
+    background-color: #e0e0e0; 
+    border-radius: 5px;
+    height: 10px; 
+    margin: 20px 0; 
+  }
+  
+.progressBar {
+    height: 100%;
+    background-color: #76c7c0; 
+    border-radius: 5px; 
+    transition: width 0.5s ease; 
+  }
+
+.form{
+    background-color: #f0f0f0;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
+    text-align: center;
 }
