@@ -1,0 +1,27 @@
+.div {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    height: 100vh; 
+    margin: 0;
+  }
+    
+.button {
+    width: 100%;
+    padding: 20px;
+    font-size: 24px;
+    background-color: rgb(36, 114, 202); 
+    color: white;
+    border: none;
+    cursor: pointer;
+    margin: 20px;
+  }
+  
+.button:hover {
+    background-color: #2d56c7; 
+  }
+  
+.list{
+  list-style: none;
+}
