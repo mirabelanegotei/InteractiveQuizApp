@@ -15,20 +15,29 @@ const QuestionId = () => {
   const [error, setError] = useState(null);
 
   useEffect(() => {
-    const storageData = localStorage.getItem('quizes');
+    if (!quizId) return; 
 
-    if (storageData) {
-      const quizes = JSON.parse(storageData);
-      const category = quizes.find(cat => cat.id === quizId);
-      if (category) {
-        setQuiz(category);
-      } else {
-        setError("Quiz not found.");
+    const fetchQuizData = async () => {
+      try {
+        const response = await fetch(`/api/questions`);
+        if (!response.ok) {
+          throw new Error("Failed to fetch quiz data.");
+        }
+        const data = await response.json();
+        const category = data.categories.find(cat => cat.id === quizId);
+        if (category) {
+          setQuiz(category);
+        } else{
+            setError("Quiz not found.");
+          }
+      } catch (error) {
+        setError(error.message);
+      } finally {
+        setLoading(false);
       }
-    } else {
-      setError("No quiz data available.");
-    }
-    setLoading(false);
+    };
+    debugger;
+    fetchQuizData();
   }, [quizId]);
 
   const questions = quiz.questions || []; 

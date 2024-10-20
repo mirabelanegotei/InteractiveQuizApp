@@ -21,32 +21,22 @@ const QuizId = () => {
 
     const fetchQuestions = async () => {
       try {
-        const storageData = localStorage.getItem('quizes');
-  
-        if(storageData) {
-          const quizes = JSON.parse(storageData);
-
-          const current = quizes.find(el => el.id === quizId);
-
-          setQuiz(current);
-
-        } else {
-          const response = await fetch("/api/questions");
-          const data = await response.json();
-  
-          let quizData = data.categories;
-  
-          const currenQuiz =  data.categories.find(el => el.id === quizId);
-  
-          localStorage.setItem('quizes', JSON.stringify(quizData))
-  
-          setQuiz(currenQuiz); 
-      
+        const response = await fetch("/api/questions");
+        if(!response){
+          throw new Error("Failed to fetch quiz data");
         }
-        setLoading(false);
-
+        const data = await response.json();
+        let quizData = data.categories;
+        const currenQuiz = quizData.find(el => el.id === quizId);
+        if(currenQuiz){
+          setQuiz(currenQuiz); 
+        }else
+        {  
+          setError("Quiz not found");
+        }
       } catch (error) {
         setError("Failed to load quiz data.");
+      } finally{
         setLoading(false);
       }
     };
@@ -72,34 +62,38 @@ const QuizId = () => {
     setIsFormVisible(!isFormVisible);
   };
 
-  const addNewQuestion = (newQuestion) => {
-    const copyQuiz = JSON.parse(JSON.stringify(quiz));
-
-    const sortedQuestions = quiz.questions.sort((a, b) => b.id - a.id);
-
-    const newId = Number(sortedQuestions[0].id) + 1;
-
-    const updatedQuestion = {
-      ...newQuestion,
-      id: newId.toString(),
-    };
-
-    copyQuiz.questions.push(updatedQuestion);
-
-    const storageQuizes = localStorage.getItem('quizes');
-
-    if(storageQuizes) {
-      const storageQuizesData = JSON.parse(storageQuizes);
-
-      const currenQuizIndez = storageQuizesData.findIndex(el => el.id === quizId);
-
-      storageQuizesData[currenQuizIndez] = copyQuiz;
-
-      localStorage.setItem('quizes', JSON.stringify(storageQuizesData));
+  const addNewQuestion = async (newQuestion) => {
+    try {
+      const copyQuiz = JSON.parse(JSON.stringify(quiz));
+      const sortedQuestions = quiz.questions.sort((a, b) => b.id - a.id);
+      const newId = Number(sortedQuestions[0].id) + 1;
+  
+      const updatedQuestion = {
+        ...newQuestion,
+        id: newId.toString(),
+      };
+      copyQuiz.questions.push(updatedQuestion);
+  
+      const response = await fetch('/api/questions', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({ quizId, updatedQuiz: copyQuiz }),
+      });
+  
+      if (!response.ok) {
+        throw new Error('Failed to update quiz');
+      }
+      const result = await response.json();
+      setQuiz(copyQuiz);
+  
+      alert('Question added successfully!');
+    } catch (error) {
+      console.error('Error updating quiz:', error);
+      alert('Failed to add new question.');
     }
-
-    setQuiz(copyQuiz);
-  }
+  };
 
   if (loading) {
     return <div>Loading...</div>;
@@ -123,13 +117,9 @@ const QuizId = () => {
       <Link href={"/categories"}>
         <button className={styles.button}>Back to categories</button>
       </Link>
-
-      {/* Butonul pentru a afișa formularul de adăugare a unei noi întrebări */}
       <button className={styles.button} onClick={toggleFormVisibility}>
         {isFormVisible ? 'Hide Add Question Form' : 'Add New Question'}
       </button>
-
-      {/* Formularul este vizibil doar când isFormVisible este true */}
       {isFormVisible && (
           <AddQuestionForm quizId={quizId} addNewQuestion={addNewQuestion} />)}
 
