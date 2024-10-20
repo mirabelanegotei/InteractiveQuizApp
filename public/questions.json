@@ -8,30 +8,54 @@
           "id": "1",
           "quest": "What is a plant?",
           "answers": [
-            { "text": "A living organism", "id": "1", "isCorrect": true },
-            { "text": "A mineral", "id": "2", "isCorrect": false },
-            { "text": "An animal", "id": "3", "isCorrect": false },
-            { "text": "A rock", "id": "4", "isCorrect": false }
+            { "text": "A living organism", 
+              "id": "1", 
+              "isCorrect": true },
+            { "text": "A mineral", 
+              "id": "2", 
+              "isCorrect": false },
+            { "text": "An animal", 
+              "id": "3", 
+              "isCorrect": false },
+            { "text": "A rock", 
+              "id": "4", 
+              "isCorrect": false }
           ]
         },
         {
           "id": "2",
           "quest": "What process helps plants produce their food?",
           "answers": [
-            { "text": "Photosynthesis", "id": "1", "isCorrect": true },
-            { "text": "Respiration", "id": "2", "isCorrect": false },
-            { "text": "Evaporation", "id": "3", "isCorrect": false },
-            { "text": "Fermentation", "id": "4", "isCorrect": false }
+            { "text": "Photosynthesis", 
+              "id": "1", 
+              "isCorrect": true },
+            { "text": "Respiration", 
+              "id": "2", 
+              "isCorrect": false },
+            { "text": "Evaporation", 
+              "id": "3", 
+              "isCorrect": false },
+            { "text": "Fermentation", 
+              "id": "4", 
+              "isCorrect": false }
           ]
         },
         {
           "id": "3",
           "quest": "What is the role of roots in plants?",
           "answers": [
-            { "text": "Absorb water and nutrients", "id": "1", "isCorrect": true },
-            { "text": "Help with respiration", "id": "2", "isCorrect": false },
-            { "text": "Help the plant to bloom", "id": "3", "isCorrect": false },
-            { "text": "Perform photosynthesis", "id": "4", "isCorrect": false }
+            { "text": "Absorb water and nutrients", 
+              "id": "1", 
+              "isCorrect": true },
+            { "text": "Help with respiration", 
+              "id": "2", 
+              "isCorrect": false },
+            { "text": "Help the plant to bloom", 
+              "id": "3", 
+              "isCorrect": false },
+            { "text": "Perform photosynthesis", 
+              "id": "4", 
+              "isCorrect": false }
           ]
         }
       ]
@@ -44,30 +68,54 @@
           "id": "1",
           "quest": "Who was Napoleon Bonaparte?",
           "answers": [
-            { "text": "A French emperor", "id": "1", "isCorrect": true },
-            { "text": "A British general", "id": "2", "isCorrect": false },
-            { "text": "An explorer", "id": "3", "isCorrect": false },
-            { "text": "A famous writer", "id": "4", "isCorrect": false }
+            { "text": "A French emperor", 
+              "id": "1", 
+              "isCorrect": true },
+            { "text": "A British general", 
+              "id": "2", 
+              "isCorrect": false },
+            { "text": "An explorer", 
+              "id": "3", 
+              "isCorrect": false },
+            { "text": "A famous writer", 
+              "id": "4", 
+              "isCorrect": false }
           ]
         },
         {
           "id": "2",
           "quest": "In what year did the French Revolution occur?",
           "answers": [
-            { "text": "1789", "id": "1", "isCorrect": true },
-            { "text": "1917", "id": "2", "isCorrect": false },
-            { "text": "1804", "id": "3", "isCorrect": false },
-            { "text": "1939", "id": "4", "isCorrect": false }
+            { "text": "1789", 
+              "id": "1", 
+              "isCorrect": true },
+            { "text": "1917", 
+              "id": "2", 
+              "isCorrect": false },
+            { "text": "1804", 
+              "id": "3", 
+              "isCorrect": false },
+            { "text": "1939", 
+              "id": "4", 
+              "isCorrect": false }
           ]
         },
         {
           "id": "3",
           "quest": "Who was the first president of the USA?",
           "answers": [
-            { "text": "George Washington", "id": "1", "isCorrect": true },
-            { "text": "Abraham Lincoln", "id": "2", "isCorrect": false },
-            { "text": "Thomas Jefferson", "id": "3", "isCorrect": false },
-            { "text": "Theodore Roosevelt", "id": "4", "isCorrect": false }
+            { "text": "George Washington", 
+              "id": "1", 
+              "isCorrect": true },
+            { "text": "Abraham Lincoln", 
+              "id": "2", 
+              "isCorrect": false },
+            { "text": "Thomas Jefferson", 
+              "id": "3", 
+              "isCorrect": false },
+            { "text": "Theodore Roosevelt", 
+              "id": "4", 
+              "isCorrect": false }
           ]
         }
       ]
@@ -80,30 +128,54 @@
           "id": "1",
           "quest": "What is the largest continent in the world?",
           "answers": [
-            { "text": "Asia", "id": "1", "isCorrect": true },
-            { "text": "Africa", "id": "2", "isCorrect": false },
-            { "text": "South America", "id": "3", "isCorrect": false },
-            { "text": "Europe", "id": "4", "isCorrect": false }
+            { "text": "Asia", 
+              "id": "1", 
+              "isCorrect": true },
+            { "text": "Africa", 
+              "id": "2", 
+              "isCorrect": false },
+            { "text": "South America", 
+              "id": "3", 
+              "isCorrect": false },
+            { "text": "Europe", 
+              "id": "4", 
+              "isCorrect": false }
           ]
         },
         {
           "id": "2",
           "quest": "What is the longest river in the world?",
           "answers": [
-            { "text": "Nile", "id": "1", "isCorrect": true },
-            { "text": "Amazon", "id": "2", "isCorrect": false },
-            { "text": "Mississippi", "id": "3", "isCorrect": false },
-            { "text": "Yangtze", "id": "4", "isCorrect": false }
+            { "text": "Nile", 
+              "id": "1", 
+              "isCorrect": true },
+            { "text": "Amazon", 
+              "id": "2", 
+              "isCorrect": false },
+            { "text": "Mississippi", 
+              "id": "3", 
+              "isCorrect": false },
+            { "text": "Yangtze", 
+              "id": "4", 
+              "isCorrect": false }
           ]
         },
         {
           "id": "3",
           "quest": "What is the highest mountain peak on Earth?",
           "answers": [
-            { "text": "Everest", "id": "1", "isCorrect": true },
-            { "text": "K2", "id": "2", "isCorrect": false },
-            { "text": "Kilimanjaro", "id": "3", "isCorrect": false },
-            { "text": "Mont Blanc", "id": "4", "isCorrect": false }
+            { "text": "Everest", 
+              "id": "1", 
+              "isCorrect": true },
+            { "text": "K2", 
+              "id": "2", 
+              "isCorrect": false },
+            { "text": "Kilimanjaro", 
+              "id": "3", 
+              "isCorrect": false },
+            { "text": "Mont Blanc", 
+              "id": "4", 
+              "isCorrect": false }
           ]
         }
       ]
@@ -116,30 +188,54 @@
           "id": "1",
           "quest": "What is 5 + 7?",
           "answers": [
-            { "text": "12", "id": "1", "isCorrect": true },
-            { "text": "10", "id": "2", "isCorrect": false },
-            { "text": "11", "id": "3", "isCorrect": false },
-            { "text": "13", "id": "4", "isCorrect": false }
+            { "text": "12", 
+              "id": "1", 
+              "isCorrect": true },
+            { "text": "10", 
+              "id": "2", 
+              "isCorrect": false },
+            { "text": "11", 
+              "id": "3", 
+              "isCorrect": false },
+            { "text": "13", 
+              "id": "4", 
+              "isCorrect": false }
           ]
         },
         {
           "id": "2",
           "quest": "What is 9 x 3?",
           "answers": [
-            { "text": "27", "id": "1", "isCorrect": true },
-            { "text": "21", "id": "2", "isCorrect": false },
-            { "text": "24", "id": "3", "isCorrect": false },
-            { "text": "18", "id": "4", "isCorrect": false }
+            { "text": "27", 
+              "id": "1", 
+              "isCorrect": true },
+            { "text": "21", 
+              "id": "2", 
+              "isCorrect": false },
+            { "text": "24", 
+              "id": "3", 
+              "isCorrect": false },
+            { "text": "18", 
+              "id": "4", 
+              "isCorrect": false }
           ]
         },
         {
           "id": "3",
           "quest": "What is the area of a square with a side length of 4 cm?",
           "answers": [
-            { "text": "16 cm²", "id": "1", "isCorrect": true },
-            { "text": "8 cm²", "id": "2", "isCorrect": false },
-            { "text": "12 cm²", "id": "3", "isCorrect": false },
-            { "text": "24 cm²", "id": "4", "isCorrect": false }
+            { "text": "16 cm²", 
+              "id": "1", 
+              "isCorrect": true },
+            { "text": "8 cm²",  
+              "id": "2", 
+              "isCorrect": false },
+            { "text": "12 cm²", 
+              "id": "3", 
+              "isCorrect": false },
+            { "text": "24 cm²", 
+              "id": "4", 
+              "isCorrect": false }
           ]
         }
       ]

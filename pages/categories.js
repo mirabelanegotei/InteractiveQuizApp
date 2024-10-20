@@ -1,16 +1,34 @@
 import Link from "next/link";
 import styles from '../styles/categories.module.css';
-
-export const getServerSideProps = async () =>{
-    const res = await fetch("http://localhost:3000/questions.json");
-    const data = await res.json();
-
-    return {
-        props: {quiz: data}
-    }
-}
+import { useEffect, useState } from "react";
   
-const Categories = ({quiz}) =>{
+const Categories = () =>{
+    const [quiz, setQuiz] = useState(null);
+    
+    useEffect(()=>{
+        const fetchData = async () =>{
+            const storageData = localStorage.getItem('quizes');
+            debugger;
+            debugger;
+            if(storageData) {
+              const quizes = JSON.parse(storageData);
+    
+              setQuiz({categories: quizes});
+            } else {
+                const res = await fetch("/api/questions");
+                const data = await res.json();
+                
+                localStorage.setItem('quizes', JSON.stringify(data.categories));
+                setQuiz(data);
+            }
+        }
+        fetchData();
+    },[]);
+
+    if (!quiz || !quiz.categories || quiz.categories.length === 0) {
+        return <div>Nu s-au găsit categorii.</div>;
+    }
+    
     return(
         <div className={styles.div}>
             <ul>
