@@ -1,68 +1,125 @@
 import { useRouter } from 'next/router';
 import styles from '../../../../styles/questionId.module.css';
-import Link from 'next/link';
+import { useState } from 'react';
 
 export async function getServerSideProps() {
   const res = await fetch("http://localhost:3000/questions.json");
   const data = await res.json();
 
   return {
-    props: { quiz: data }
+    props: { quiz: data.categories }
   };
 }
 
 const QuestionId = ({ quiz }) => {
-  const router = useRouter();
-  debugger;
- const { quizId, questionId } = router.query;
-  const questionIndex = parseInt(questionId) - 1; 
-  const question = quiz[quizId]?.[questionIndex];
 
-  if (!question) {
-    return <h2>The question is not found.</h2>;
+  const router = useRouter();
+  const { quizId, questionId } = router.query;
+
+  const [isCorrect, setIsCorrect] = useState(false);
+  const [progressCount, setProgressCount] = useState(0);
+  const [correctAnswer, setCorectAnswer]= useState('');
+  const [selectedAnswerId, setSelectedAnswerId] = useState(null);
+
+  const category = quiz.find(cat => cat.id === quizId); 
+  const questions = category ? category.questions : []; 
+  const currentQuestion = questions.find(q => q.id === questionId);
+
+  const totalQuestions = questions?.length || 0;
+  const progressPercentage = totalQuestions > 0 ? (progressCount/totalQuestions)* 100 : 0;
+
+  if (!currentQuestion) {
+    return <h2>The questions is not found!</h2>;
+  }
+
+  const nextHandler = () =>{
+    setIsCorrect(false);
+    setSelectedAnswerId(null);
+    setCorectAnswer("");
+
+    const radioBtn = document.querySelectorAll('input[name="answer"]');
+    radioBtn.forEach((radio) => {
+          radio.checked = false;
+          radio.disabled = false;
+    });
+
+    const currentQuestionIndex = questions.findIndex(q => q.id === questionId);
+    const nextQuestionIndex = currentQuestionIndex + 1;
+        
+  if (nextQuestionIndex < questions.length) 
+    {
+      const nextQuestionId = questions[nextQuestionIndex].id;
+      router.push(`/quiz/${quizId}/question/${nextQuestionId}`);
+    } 
+    else
+    {
+      router.push({pathname: '/results',
+        query: {
+          progressCount: progressCount,
+          totalQuestions: totalQuestions,
+          progressPercentage: progressPercentage.toFixed(0),
+        } });
+    }
   }
 
   const handleAnswer = (selectedId) => {
-    const selectedAnswer = question.answers.find(answer => answer.id === selectedId);
-    const isCorrect = selectedAnswer && selectedAnswer.isCorrect; 
-    
-    if (isCorrect) {
-      const currentQuestionIndex = quiz[quizId].findIndex(q => q.id === questionId);
-      const nextQuestionIndex = currentQuestionIndex + 1;
-  
-      if (nextQuestionIndex < quiz[quizId].length) {
-        const nextQuestionId = quiz[quizId][nextQuestionIndex].id;
-        document.querySelectorAll('input[name="answer"]').forEach((radio) => {
-          radio.checked = false;
-        });
-        router.push(`/quiz/${quizId}/question/${nextQuestionId}`);
-    } else {
-      alert("This was the last question!\nAfter clicking 'OK', you will be redirected to the categories page.");
-      router.push('/categories');
-      }
+    const selectedAnswer = currentQuestion.answers.find(answer => answer.id === selectedId);
+    const isCorrectAnswer = selectedAnswer && selectedAnswer.isCorrect; 
+
+    setCorectAnswer(currentQuestion.answers.find(answer=>answer.isCorrect === true)?.text);
+    setSelectedAnswerId(selectedId);
+
+    setIsCorrect(true);
+
+    const radioBtn = document.querySelectorAll('input[name="answer"]');
+    radioBtn.forEach((radio) => {
+        radio.disabled = true;
+    });
+
+    if (isCorrectAnswer) 
+    {
+        setProgressCount((prev) => prev + 1);
     }
   };
   
   return (
     <div className={styles.container}>
       <div className={styles.titleBox}>
-        <h1 className={styles.questionTitle}>{`Question ${question.id}`} - {question.quest}</h1>
+        <h1 className={styles.questionTitle}>{`Question ${currentQuestion.id}`} - {currentQuestion.quest}</h1>
       </div>
-      <ul className={styles.answerList}>
-        {question.answers.map(answer => (
-          <li key={answer.id} className={styles.answerItem}>
-            <div className={styles.answerBox}>
-              <label className={styles.answerLabel}>
-                <input type="radio" name="answer" value={answer.id} onChange={() => handleAnswer(answer.id)} />
-                <span className={styles.answerText}>{answer.text}</span>
-              </label>
-            </div>
-          </li>
-        ))}
-      </ul>
-      <Link href={'/'}><button className={styles.homeButton}>Home Page</button></Link>
+      <form className={styles.form}>
+        <ul className={styles.answerList}>
+          {currentQuestion.answers.map(answer => (
+            <li key={answer.id} className={styles.answerItem}>
+              <div className={styles.answerBox}>
+                <label className={`${styles.answerLabel} ${
+                    selectedAnswerId === answer.id
+                      ? answer.isCorrect
+                        ? styles.correct
+                        : styles.incorrect
+                      : styles.default
+                  }`}>
+                  <input type="radio" name="answer" value={answer.id} onChange={() => handleAnswer(answer.id)} />
+                  <span className={styles.answerText}>{answer.text}</span>
+                </label>
+              </div>
+            </li>
+          ))}
+        </ul>
+        {isCorrect && <span className={styles.correctAnswer}>Correct Answer: {correctAnswer}<br></br></span>}
+        <div className={styles.divBtn}>
+        </div>
+        <div className={styles.progressBarContainer}>
+          <div
+           className={styles.progressBar}
+           style={{ width: `${progressPercentage}%` }}
+          />
+          <span className={styles.progressText}>{`${progressPercentage.toFixed(0)}%`}</span>
+        </div>
+        {isCorrect && <button type='submit' className={styles.nextButton} onClick={nextHandler}>Next</button>}
+      </form>
     </div>
   );
-    };
+};
 
 export default QuestionId;
