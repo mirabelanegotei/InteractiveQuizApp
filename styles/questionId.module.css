@@ -1,0 +1,131 @@
+.container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center; 
+    min-height: 100vh; 
+    background-color: #f0f0f0;
+    padding: 2rem;
+}
+
+.titleBox {
+    border: 2px solid #007bff; 
+    padding: 1rem;
+    border-radius: 10px;
+    background-color: white; 
+    margin-bottom: 2rem; 
+}
+
+.questionTitle {
+    font-size: 2rem;
+    font-weight: bold;
+    margin: 0;
+}
+
+.answerList {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr); 
+    gap: 1rem; 
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.answerItem {
+    display: flex;
+    align-items: center;
+    margin-bottom: 1rem; 
+}
+
+.answerBox {
+    border: 1px solid #007bff; 
+    padding: 1rem;
+    border-radius: 8px; 
+    background-color: white; 
+    width: 100%; 
+}
+
+.answerLabel {
+    margin-left: rem; 
+}
+.correct {
+    color: green;
+}
+
+.incorrect {
+  color: red;
+}
+.default{
+    color: black;
+}
+
+.homeButton {
+    background-color: #007bff;
+    color: white;
+    border: none;
+    padding: 0.75rem 1.5rem;
+    border-radius: 5px;
+    cursor: pointer;
+    margin-top: 1rem; 
+}
+
+.homeButton:hover{
+    background-color: #2c77c7;
+}
+
+.answerText {
+  margin-left: 0.5rem; 
+}
+
+.nextQuestion{
+    background-color: #007bff;
+    color: white;
+    border: none;
+    padding: 0.5rem;
+    border-radius: 5px;
+    cursor: pointer;
+    width: 80px;
+    display: flex;
+}
+
+.nextButton{
+    background-color: #007bff;
+    color: white;
+    border: none;
+    padding: 0.75rem;
+    border-radius: 5px;
+    cursor: pointer;
+    align-items: right;
+}
+
+.divBtn{
+    gap: 1rem; 
+    display: grid;
+}
+
+.correctAnswer{
+    color: green;
+}
+
+.progressBarContainer {
+    width: 100%;
+    background-color: #e0e0e0; 
+    border-radius: 5px;
+    height: 10px; 
+    margin: 20px 0; 
+  }
+  
+.progressBar {
+    height: 100%;
+    background-color: #76c7c0; 
+    border-radius: 5px; 
+    transition: width 0.5s ease; 
+  }
+
+.form{
+    background-color: #f0f0f0;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
+    text-align: center;
+}
